@@ -1,0 +1,100 @@
+import java.util.*;
+
+public class Main
+{
+   
+    private static  ArrayList<String> contactList=new ArrayList<>();
+    Scanner s=new Scanner(System.in);
+    
+    public static void save(String n){
+        if (n.matches("\\d{10}")) { 
+        contactList.add(n);
+        System.out.println("Number Saved");
+        } 
+        else{
+        System.out.println("Invalid number! It should be exactly 10 digits.");
+        }
+    }
+    public static void display(){
+        System.out.println("Contacts");
+        for(String ct:contactList){
+            System.out.println(ct);
+        }
+    }
+    public static void search(String l){
+           if(contactList.contains(l)){
+               System.out.println("Number found:"+l);
+           }
+           else{
+               System.out.println("Number Not Found");
+           }
+    }
+    public static void delete(String d){
+        if(contactList.remove(d)){
+            System.out.println("Number deleted");
+        }
+        else{
+            System.out.println("Number Not found");
+        }
+    }
+    public void edit(){
+        System.out.println("Enter the old number to edit:");
+        String oldNumber=s.next();
+        if(contactList.contains(oldNumber)){
+            System.out.println("Enter the new newnumber");
+            String newNumber=s.next();
+            contactList.set(contactList.indexOf(oldNumber),newNumber);
+            System.out.println("Number updated");
+        }
+        else{
+            System.out.println("Number not Found");
+        }
+    }
+    
+    
+    
+    
+	public static void main(String[] args) {
+		 Main obj=new Main();
+		 Scanner s=new Scanner(System.in);
+		 int c;
+		 do{
+		     System.out.println("\n\nMenu\n");
+		     System.out.println("1.Save\n");
+		     System.out.println("2.Display\n");
+		     System.out.println("3.Search\n");
+		     System.out.println("4.Delete\n");
+		     System.out.println("5.Edit\n");
+		     System.out.println("6.Exit\n");
+		     System.out.println("Enter your choice");
+		     c=s.nextInt();
+		     s.nextLine();
+		     switch(c){
+		         case 1:System.out.println("Enter a Mobile Number:");
+		                String n=s.nextLine();
+		                obj.save(n);
+		                break;
+		         case 2:
+		                obj.display();
+		                break;
+		         case 3:System.out.println("Enter Number To Search:");
+		                String t=s.nextLine();
+		                obj.search(t);
+		                break;
+		         case 4:System.out.println("Enter Number To Delete:");
+		                String v=s.nextLine();
+		                obj.delete(v);
+		                break;
+		         case 5:System.out.println("Enter Number To Edit:");
+		                obj.edit();
+		                break;
+		         case 6:
+		             System.out.println("Exiting...");
+		             break;
+		         default:
+		              System.out.println("Invalid choice. please try again.");
+		     }
+		     
+		 }while(c!=6);
+	}
+}
