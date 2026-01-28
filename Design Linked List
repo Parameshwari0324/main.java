@@ -1,0 +1,101 @@
+class Node{
+    int data;
+    Node next;
+    Node(int d){
+        data=d;
+        next=null;
+    }
+}
+class MyLinkedList {
+    Node head, tail;
+    int size;
+
+    public MyLinkedList() {
+        head = null;
+        tail = null;
+        size = 0;
+        
+    }
+    
+    public int get(int index) {
+        if(index<0||index>=size) return -1;
+        Node temp=head;
+        for(int i=0;i<index;i++){
+            temp=temp.next;
+        }
+        return temp.data;
+    }
+    
+    public void addAtHead(int val) {
+        Node newnode=new Node(val);
+        size++;
+        if(head==null){
+            head=tail=newnode;
+        }
+        else{
+            newnode.next=head;
+            head=newnode;
+        }
+    }
+    
+    public void addAtTail(int val) {
+        Node newnode=new Node(val);
+        size++;
+        if(tail==null){
+            head=tail=newnode;
+        }
+        else{
+            tail.next=newnode;
+            tail=newnode;
+        } 
+        
+    }
+    
+    public void addAtIndex(int index, int val) {
+        if(index<0||index>size) return;
+        if(index==0){
+            addAtHead(val);
+            return;
+        }
+        if(index==size){
+            addAtTail(val);
+            return;
+        }
+        Node newnode=new Node(val);
+        Node temp=head;
+        for(int i=0;i<index-1;i++){
+            temp=temp.next;
+        }
+        newnode.next=temp.next;
+        temp.next=newnode;
+        size++;
+        
+    }
+    public void deleteatHead(){
+        if(head==null||size==0){
+            return;
+        }
+        head=head.next;
+        size--;
+    }
+    
+    public void deleteAtIndex(int index) {
+        if(index<0||index>=size){
+            return;
+        }
+        if(index==0){
+            deleteatHead();
+            return;
+        }
+        Node temp=head;
+        for(int i=0;i<index-1;i++){
+            temp=temp.next;
+        }
+        if(temp.next==tail){
+            tail=temp;
+        }
+        temp.next=temp.next.next;
+        size--;
+    }
+}
+ */
